@@ -1,11 +1,5 @@
-import React from 'react';
-
 const SignUp = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  return <div>Type Login</div>;
 };
 
 export default SignUp;
