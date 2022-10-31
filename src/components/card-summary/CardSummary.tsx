@@ -1,21 +1,24 @@
-import { Link } from "react-router-dom";
+import { Person } from "../../models/Person";
+import "./CardSummary.scss";
 
-const CardSummary = () => {
+type cardProps = {
+  card: Person;
+};
+
+const CardSummary = ({ card }: cardProps) => {
   return (
-    <div className="col s12 l3">
-      <div className="card blue-grey darken-1">
+    <div id="person-card" className=" col s12 l3 ">
+      <div className="card indigo lighten-2">
         <div className="card-content white-text">
-          <span className="card-title">Card Title</span>
-          <p>
-            I am Link very simple card. I am good at containing small bits of
-            information. I am convenient because I require little markup to use
-            effectively.
-          </p>
+          <div className="card-image">
+            <img src={card.image} alt="Coming soon..." />
+          </div>
+          <span className="card-title">{card.name}</span>
         </div>
-        <div className="card-action">
-          <Link to="#">This is Link link</Link>
-          <Link to="#">This is Link link</Link>
-        </div>
+        <p className="card-title card-footer">
+          First reveal : {new Date(card.created).toLocaleDateString()}
+        </p>
+        <i className="material-icons">favorite_border</i>
       </div>
     </div>
   );

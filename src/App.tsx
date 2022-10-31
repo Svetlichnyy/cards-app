@@ -5,6 +5,7 @@ import Mainpage from "./pages/Mainpage";
 import Homepage from "./pages/homepage/Homepage";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
+import CardDetails from "./pages/card-details/CardDetails";
 
 import "./App.scss";
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/Main" element={<Mainpage />} />
           <Route path="/SignIn" element={<SignIn />} />
           <Route path="/SignUp" element={<SignUp />} />
+          <Route path="/Card/:id" element={<CardDetails />} />
         </Routes>
       </div>
     </BrowserRouter>
