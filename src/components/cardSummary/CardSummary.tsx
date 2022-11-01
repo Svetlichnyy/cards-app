@@ -1,11 +1,11 @@
 import { Person } from "../../models/Person";
 import "./CardSummary.scss";
 
-type cardProps = {
+type CardProps = {
   card: Person;
 };
 
-const CardSummary = ({ card }: cardProps) => {
+const CardSummary = ({ card }: CardProps) => {
   return (
     <div id="person-card" className=" col s12 l3 ">
       <div className="card indigo lighten-2">

@@ -17,7 +17,7 @@ const SearchBar = () => {
     navigate("/main");
   };
   return (
-    <nav className="serch-bar">
+    <nav className="search-bar">
       <div className="nav-wrapper light-blue darken-3">
         <form onSubmit={handleSubmit}>
           <div className="input-field ">

@@ -7,30 +7,30 @@ import "./CardDetails.scss";
 const Details = () => {
   let { id } = useParams();
 
-  const { data: currentPerson } = personAPI.useFecthCurrentPersonQuery(id);
+  const { data: person } = personAPI.useFetchPersonQuery(id);
 
   return (
     <>
-      {currentPerson && (
+      {person && (
         <div className="container section">
           <Link to="/main" className="material-icons transparent arrow">
             arrow_back
           </Link>
           <div className="card">
             <div className="card-content">
-              <span className="card-title">{currentPerson.name}</span>
+              <span className="card-title">{person.name}</span>
               <p>
-                Current status : {currentPerson.status} <br />
+                current status : {person.status} <br />
               </p>
             </div>
             <div className="card-image">
-              <img src={currentPerson.image} alt="Coming soon..." />
+              <img src={person.image} alt="Coming soon..." />
             </div>
             <div className="card-action">
               <p>
-                Location : {currentPerson.location.name} <br />
-                Homeplace : {currentPerson.location.name} <br />
-                Gender : {currentPerson.gender}
+                Location : {person.location.name} <br />
+                Home place : {person.location.name} <br />
+                Gender : {person.gender}
               </p>
             </div>
           </div>

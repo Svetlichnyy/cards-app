@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
 import { personAPI } from "../../services/PersonService";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { useAppSelector } from "../../hooks/redux";
 import { Person } from "../../models/Person";
 
-import CardSummary from "../card-summary/CardSummary";
+import CardSummary from "../cardSummary/CardSummary";
 
 const CardList = () => {
   const searchWord = useAppSelector((state) => state.searchReducer.searchWord);
@@ -15,7 +15,7 @@ const CardList = () => {
       <div className="row">
         {persons &&
           persons.results.map((person: Person) => (
-            <Link key={person.id} to={"/Card/" + person.id}>
+            <Link key={person.id} to={"/card/" + person.id}>
               <CardSummary key={person.id} card={person} />
             </Link>
           ))}
