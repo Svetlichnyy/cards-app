@@ -1,16 +1,25 @@
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../hooks/redux";
+
+import { searchSlice } from "../../store/reducers/PersonSlice";
 
 const SearchBar = () => {
+  const { setSearchWord } = searchSlice.actions;
+  const dispatch = useAppDispatch();
   let navigate = useNavigate();
-  const handleClick = (e: any) => {
-    e.preventDefault();
-    navigate("/Main");
-  };
 
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const target = e.target as typeof e.target & {
+      search: { value: string };
+    };
+    dispatch(setSearchWord(target.search.value));
+    navigate("/main");
+  };
   return (
-    <nav className="serch-bar">
+    <nav className="search-bar">
       <div className="nav-wrapper light-blue darken-3">
-        <form onSubmit={handleClick}>
+        <form onSubmit={handleSubmit}>
           <div className="input-field ">
             <input
               placeholder="type something..."
