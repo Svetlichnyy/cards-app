@@ -11,7 +11,7 @@ function Navbar() {
     <nav>
       <div className="nav-wrapper grey darken-3">
         <Link to="/">
-          <div className="brand-logo my-logo">Logo</div>
+          <div className="brand-logo my-logo">R & M Multiverse</div>
         </Link>
         <SignInLink />
         <SignOutLink />
