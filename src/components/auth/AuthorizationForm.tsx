@@ -1,7 +1,11 @@
 import { useFormik, FormikErrors } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
+
+import { useAddUser } from "../../hooks/useAddUser";
 
 import "./FormStyles.scss";
+
 interface Values {
   login: string;
   password: string;
@@ -13,6 +17,8 @@ const validate = (values: Values) => {
     errors.login = "Required";
   } else if (values.login.length > 15) {
     errors.login = "Must be 15 characters or less";
+  } else if (values.login.length < 3) {
+    errors.login = "Must be 3 characters or more";
   }
 
   if (!values.password) {
@@ -21,21 +27,25 @@ const validate = (values: Values) => {
   return errors;
 };
 
-const SignIn = () => {
-  const navigate = useNavigate();
+const AuthorizationForm = () => {
+  let location = useLocation();
+
+  const [errorMessage, setErrorMessage] = useState<string | undefined>("");
+  const { checkAndRegister, checkAndLogin } = useAddUser();
   const formik = useFormik({
     initialValues: {
       login: "",
       password: "",
-      signedIn: "false",
     },
     validate,
     onSubmit: (values) => {
-      localStorage.setItem(
-        `user_${values.login}`,
-        JSON.stringify(values, null, 2)
-      );
-      navigate("/main");
+      let signError: string | undefined;
+      location.pathname === "/SignUp"
+        ? (signError = checkAndRegister(values))
+        : (signError = checkAndLogin(values));
+      if (typeof signError === "string") {
+        setErrorMessage(signError);
+      }
     },
   });
   return (
@@ -43,8 +53,9 @@ const SignIn = () => {
       <div className="row">
         <div className="col s12 m4 l2"></div>
         <div className="col s12 m4 l8 center-align wrap">
+          <h1>{location.pathname === "/SignUp" ? "Registration" : "Login"}</h1>
           <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="login">Login</label>
+            <label htmlFor="login">login</label>
             <input
               id="login"
               name="login"
@@ -53,6 +64,7 @@ const SignIn = () => {
               value={formik.values.login}
             />
             <div className="error-message">
+              {errorMessage ? <p>{errorMessage}</p> : null}
               {formik.errors.login ? <p>{formik.errors.login}</p> : null}
             </div>
 
@@ -81,4 +93,4 @@ const SignIn = () => {
     </div>
   );
 };
-export default SignIn;
+export default AuthorizationForm;

@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
-import { personAPI } from "../../services/PersonService";
+import { personAPI } from "../../services/personService";
 import { useAppSelector } from "../../hooks/redux";
 import { Person } from "../../models/Person";
 
 import CardSummary from "../cardSummary/CardSummary";
 
 const CardList = () => {
-  const searchWord = useAppSelector((state) => state.searchReducer.searchWord);
+  const searchWord = useAppSelector((state) => state.userReducer.searchWord);
   const { data: persons } = personAPI.useFetchSearchedPersonsQuery(searchWord);
 
   return (

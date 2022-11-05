@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 
-import { personAPI } from "../../services/PersonService";
+import { personAPI } from "../../services/personService";
 
 import "./CardDetails.scss";
 
