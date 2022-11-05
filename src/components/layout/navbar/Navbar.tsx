@@ -1,20 +1,22 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../../hooks/redux";
 
-import SignInLink from "../SignedInLink";
-import SignOutLink from "../SignedOutLink";
+import SignedInLink from "../SignedInLink";
+import SignedOutLink from "../SignedOutLink";
 
 import "./Navbar.scss";
 
 function Navbar() {
+  const isSomeUserloggedIn = useAppSelector(
+    (state) => state.userReducer.isUserLoggedIn
+  );
   return (
     <nav>
       <div className="nav-wrapper grey darken-3">
         <Link to="/">
-          <div className="brand-logo my-logo">Logo</div>
+          <div className="brand-logo my-logo">R & M Multiverse</div>
         </Link>
-        <SignInLink />
-        <SignOutLink />
+        {isSomeUserloggedIn ? <SignedInLink /> : <SignedOutLink />}
       </div>
     </nav>
   );

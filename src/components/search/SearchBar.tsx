@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks/redux";
 
-import { searchSlice } from "../../store/reducers/PersonSlice";
+import { userSlice } from "../../store/reducers/userSlice";
 
 const SearchBar = () => {
-  const { setSearchWord } = searchSlice.actions;
+  const { setSearchWord } = userSlice.actions;
   const dispatch = useAppDispatch();
   let navigate = useNavigate();
 

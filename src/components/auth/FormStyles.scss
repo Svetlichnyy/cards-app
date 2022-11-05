@@ -1,0 +1,26 @@
+.container {
+  .wrap {
+    margin-top: 100px;
+    justify-content: center;
+    input[type="text"]:focus {
+      border-bottom: 1px solid #7986cb;
+      box-shadow: 0 1px 0 0 #7986cb;
+    }
+    input[type="email"]:focus {
+      border-bottom: 1px solid #7986cb;
+      box-shadow: 0 1px 0 0 #7986cb;
+    }
+    input {
+      background-color: white;
+      margin: 15px 0 15px 0;
+      border-radius: 4px;
+    }
+    .error-message {
+      min-height: 30px;
+      p {
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+}

@@ -1,10 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import searchReducer from "./reducers/PersonSlice";
-import { personAPI } from "../services/PersonService";
+import userReducer from "./reducers/userSlice";
+import { personAPI } from "../services/personService";
+import { storageMiddleware } from "../middlewares/localStorageMiddleware";
 
 const rootReducer = combineReducers({
-  searchReducer,
+  userReducer,
   [personAPI.reducerPath]: personAPI.reducer,
 });
 
@@ -12,7 +13,7 @@ export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(personAPI.middleware),
+      getDefaultMiddleware().concat(personAPI.middleware,storageMiddleware),
   });
 };
 
