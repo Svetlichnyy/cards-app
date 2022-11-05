@@ -8,7 +8,7 @@ import "./Navbar.scss";
 
 function Navbar() {
   const isSomeUserloggedIn = useAppSelector(
-    (state) => state.userReducer.isSomeUserLoggedIn
+    (state) => state.userReducer.isUserLoggedIn
   );
   return (
     <nav>

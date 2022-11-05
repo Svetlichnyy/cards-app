@@ -4,16 +4,11 @@ import { useAppDispatch } from "../../hooks/redux";
 import { userSlice } from "../../store/reducers/userSlice";
 
 const SignedInLink = () => {
-  const { setAuthedUser } = userSlice.actions;
+  const { signOutUser } = userSlice.actions;
   const dispatch = useAppDispatch();
   const handleClick = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    dispatch(
-      setAuthedUser({
-        login: "",
-        password: "",
-      })
-    );
+    dispatch(signOutUser());
   };
   return (
     <ul id="nav-mobile" className="right hide-on-med-and-down">

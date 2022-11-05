@@ -32,7 +32,7 @@ export const useAddUser = () => {
     const enteredUser = localStorage.getItem(`user_${values.login}`);
     if (typeof enteredUser === "string") {
       parsedUser = JSON.parse(enteredUser);
-    }
+    } else return "User with this login is not registered yet";
 
     if (
       parsedUser.login === values.login &&

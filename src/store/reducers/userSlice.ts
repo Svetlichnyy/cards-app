@@ -7,7 +7,7 @@ interface User {
 interface UserState {
   searchWord: string;
   authorizedUser: User;
-  isSomeUserLoggedIn: boolean;
+  isUserLoggedIn: boolean;
 }
 
 const initialState: UserState = {
@@ -16,7 +16,7 @@ const initialState: UserState = {
     password: "",
   },
   searchWord: "",
-  isSomeUserLoggedIn: false,
+  isUserLoggedIn: false,
 };
 
 export const userSlice = createSlice({
@@ -28,7 +28,11 @@ export const userSlice = createSlice({
     },
     setAuthedUser(state, action: PayloadAction<User>) {
       state.authorizedUser = action.payload;
-      state.isSomeUserLoggedIn = !state.isSomeUserLoggedIn;
+      state.isUserLoggedIn = true;
+    },
+    signOutUser(state) {
+      state.authorizedUser = { login: "", password: "" };
+      state.isUserLoggedIn = false;
     },
   },
 });

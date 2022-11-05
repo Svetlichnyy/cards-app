@@ -30,24 +30,30 @@ const validate = (values: Values) => {
 const AuthorizationForm = () => {
   let location = useLocation();
 
-  const [errorMessage, setErrorMessage] = useState<string | undefined>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const { checkAndRegister, checkAndLogin } = useAddUser();
+
   const formik = useFormik({
     initialValues: {
       login: "",
       password: "",
     },
+
     validate,
+
     onSubmit: (values) => {
       let signError: string | undefined;
+
       location.pathname === "/SignUp"
         ? (signError = checkAndRegister(values))
         : (signError = checkAndLogin(values));
+
       if (typeof signError === "string") {
         setErrorMessage(signError);
       }
     },
   });
+
   return (
     <div className="container">
       <div className="row">
