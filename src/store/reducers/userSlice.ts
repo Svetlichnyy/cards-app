@@ -8,6 +8,9 @@ interface UserState {
   searchWord: string;
   authorizedUser: User;
   isUserLoggedIn: boolean;
+  page: number;
+  perPage: number;
+  totalCount: number;
 }
 
 const initialState: UserState = {
@@ -17,6 +20,9 @@ const initialState: UserState = {
   },
   searchWord: "",
   isUserLoggedIn: false,
+  page: 1,
+  perPage: 16,
+  totalCount: 0,
 };
 
 export const userSlice = createSlice({

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import SearchBar from "../../components/search/SearchBar";
 
 import "./Homepage.scss";

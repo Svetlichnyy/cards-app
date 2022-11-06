@@ -8,7 +8,9 @@ import CardSummary from "../cardSummary/CardSummary";
 
 const CardList = () => {
   const searchWord = useAppSelector((state) => state.userReducer.searchWord);
-  const { data: persons } = personAPI.useFetchSearchedPersonsQuery(searchWord);
+  const { data: persons } = personAPI.useFetchPageOfPersonsQuery({
+    name: searchWord,
+  });
 
   return (
     <div className="container">
