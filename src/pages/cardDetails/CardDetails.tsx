@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { personAPI } from "../../services/personService";
 
@@ -8,14 +8,18 @@ const Details = () => {
   let { id } = useParams();
 
   const { data: person } = personAPI.useFetchPersonQuery(id);
+  const navigate = useNavigate();
 
   return (
     <>
       {person && (
         <div className="container section">
-          <Link to="/main" className="material-icons transparent arrow">
+          <button
+            onClick={() => navigate(-1)}
+            className="material-icons btn indigo lighten-1 arrow"
+          >
             arrow_back
-          </Link>
+          </button>
           <div className="card">
             <div className="card-content">
               <span className="card-title">{person.name}</span>

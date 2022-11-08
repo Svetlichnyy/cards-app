@@ -5,7 +5,6 @@ interface User {
   password: string;
 }
 interface UserState {
-  searchWord: string;
   authorizedUser: User;
   isUserLoggedIn: boolean;
 }
@@ -15,7 +14,6 @@ const initialState: UserState = {
     login: "",
     password: "",
   },
-  searchWord: "",
   isUserLoggedIn: false,
 };
 
@@ -23,9 +21,6 @@ export const userSlice = createSlice({
   name: "userFeatures",
   initialState,
   reducers: {
-    setSearchWord(state, action: PayloadAction<string>) {
-      state.searchWord = action.payload;
-    },
     setAuthedUser(state, action: PayloadAction<User>) {
       state.authorizedUser = action.payload;
       state.isUserLoggedIn = true;

@@ -1,47 +1,78 @@
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/redux";
 
-import { userSlice } from "../../store/reducers/userSlice";
+import { Filter } from "../../models/Filters";
+import Filters from "../filters/Filters";
+
+import "./SearchBar.scss";
 
 const SearchBar = () => {
-  const { setSearchWord } = userSlice.actions;
-  const dispatch = useAppDispatch();
+  const [options, setOptions] = useState<Filter>({
+    gender: "",
+    status: "",
+  });
+
+  const [isFiltersActive, setIsFiltersActive] = useState<boolean>(false);
+
   let navigate = useNavigate();
-
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const [name, setName] = useState("");
+  const handleClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const target = e.target as typeof e.target & {
-      search: { value: string };
-    };
-    dispatch(setSearchWord(target.search.value));
-    navigate("/main");
+    navigate(
+      "/search?name=" +
+        name +
+        "&status=" +
+        options.status +
+        "&gender=" +
+        options.gender +
+        "&page=1"
+    );
   };
-  return (
-    <nav className="search-bar">
-      <div className="nav-wrapper light-blue darken-3">
-        <form onSubmit={handleSubmit}>
-          <div className="input-field ">
-            <input
-              placeholder="type something..."
-              id="search"
-              type="search"
-              required
-            />
-            <label className="label-icon" htmlFor="search">
-              <i className="material-icons">search</i>
-            </label>
-            <i className="material-icons">close</i>
-          </div>
 
-          <button
-            type="submit"
-            className="button-search waves-effect light-blue darken-2 btn-large"
-          >
-            Search
-          </button>
-        </form>
+  const showFilters = () => {
+    setIsFiltersActive(!isFiltersActive);
+  };
+
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="search-wrapper col s12 m4 l12 center-align">
+          <nav className="search-bar">
+            <div className="nav-wrapper light-blue darken-3">
+              <form>
+                <div className="input-field indigo ">
+                  <input
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="type something..."
+                    id="search"
+                    type="search"
+                    required
+                  />
+                  <label className="label-icon" htmlFor="search">
+                    <i className="material-icons">search</i>
+                  </label>
+                  <i className="material-icons" onClick={showFilters}>
+                    filter_list
+                  </i>
+                  <button
+                    onClick={handleClick}
+                    type="submit"
+                    className="button-search waves-effect indigo lighten-1 btn"
+                  >
+                    Search
+                  </button>
+                </div>
+              </form>
+            </div>
+          </nav>
+          <Filters
+            filters={options}
+            setFilters={setOptions}
+            isFiltersActive={isFiltersActive}
+          />
+        </div>
       </div>
-    </nav>
+    </div>
   );
 };
 

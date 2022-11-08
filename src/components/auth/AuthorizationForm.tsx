@@ -43,12 +43,13 @@ const AuthorizationForm = () => {
 
     onSubmit: (values) => {
       let signError: string | undefined;
+      if (location.pathname === "/SignUp") {
+        signError = checkAndRegister(values);
+      } else {
+        signError = checkAndLogin(values);
+      }
 
-      location.pathname === "/SignUp"
-        ? (signError = checkAndRegister(values))
-        : (signError = checkAndLogin(values));
-
-      if (typeof signError === "string") {
+      if (signError) {
         setErrorMessage(signError);
       }
     },
