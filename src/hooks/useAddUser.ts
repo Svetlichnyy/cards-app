@@ -39,7 +39,7 @@ export const useAddUser = () => {
       parsedUser.password === values.password
     ) {
       dispatch(setAuthedUser(values));
-      navigate("/main");
+      navigate("/search");
     } else if (
       parsedUser.login === values.login &&
       parsedUser.password !== values.password

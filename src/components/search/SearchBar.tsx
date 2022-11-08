@@ -1,71 +1,79 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks/redux";
 
-import { userSlice } from "../../store/reducers/userSlice";
+import { Filter } from "../../models/Filters";
+import Filters from "../filters/Filters";
 
 import "./SearchBar.scss";
 
-interface Props {
-  setPage?: React.Dispatch<React.SetStateAction<number>>;
-  setIsFiltersActive?: React.Dispatch<React.SetStateAction<boolean>>;
-  isFiltersActive?: boolean;
-  setIsSearching?: React.Dispatch<React.SetStateAction<boolean>>;
-  isSearching?: boolean;
-}
+const SearchBar = () => {
+  const [options, setOptions] = useState<Filter>({
+    gender: "",
+    status: "",
+  });
 
-const SearchBar = ({
-  setPage,
-  setIsFiltersActive,
-  isFiltersActive,
-  setIsSearching,
-  isSearching,
-}: Props) => {
-  const { setSearchWord } = userSlice.actions;
-  const dispatch = useAppDispatch();
+  const [isFiltersActive, setIsFiltersActive] = useState<boolean>(false);
+
   let navigate = useNavigate();
-
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const [name, setName] = useState("");
+  useEffect(() => {}, []);
+  const handleClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setIsSearching && setIsSearching(true);
-    const target = e.target as typeof e.target & {
-      search: { value: string };
-    };
-    dispatch(setSearchWord(target.search.value));
-    setPage && setPage(1);
-    navigate("/main");
+    navigate(
+      "/search?name=" +
+        name +
+        "&status=" +
+        options.status +
+        "&gender=" +
+        options.gender +
+        "&page=1"
+    );
   };
 
   const showFilters = () => {
-    setIsFiltersActive && setIsFiltersActive(!isFiltersActive);
+    setIsFiltersActive(!isFiltersActive);
   };
+
   return (
-    <nav className="search-bar">
-      <div className="nav-wrapper light-blue darken-3">
-        <form onSubmit={handleSubmit}>
-          <div className="input-field indigo ">
-            <input
-              placeholder="type something..."
-              id="search"
-              type="search"
-              required
-            />
-            <label className="label-icon" htmlFor="search">
-              <i className="material-icons">search</i>
-            </label>
-            <i className="material-icons" onClick={showFilters}>
-              filter_list
-            </i>
-            <button
-              type="submit"
-              className="button-search waves-effect indigo lighten-1 btn"
-            >
-              Search
-            </button>
-          </div>
-        </form>
+    <div className="container">
+      <div className="row">
+        <div className="search-wrapper col s12 m4 l12 center-align">
+          <nav className="search-bar">
+            <div className="nav-wrapper light-blue darken-3">
+              <form>
+                <div className="input-field indigo ">
+                  <input
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="type something..."
+                    id="search"
+                    type="search"
+                    required
+                  />
+                  <label className="label-icon" htmlFor="search">
+                    <i className="material-icons">search</i>
+                  </label>
+                  <i className="material-icons" onClick={showFilters}>
+                    filter_list
+                  </i>
+                  <button
+                    onClick={handleClick}
+                    type="submit"
+                    className="button-search waves-effect indigo lighten-1 btn"
+                  >
+                    Search
+                  </button>
+                </div>
+              </form>
+            </div>
+          </nav>
+          <Filters
+            filters={options}
+            setFilters={setOptions}
+            isFiltersActive={isFiltersActive}
+          />
+        </div>
       </div>
-    </nav>
+    </div>
   );
 };
 

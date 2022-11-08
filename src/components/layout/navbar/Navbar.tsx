@@ -7,7 +7,7 @@ import SignedOutLink from "../SignedOutLink";
 import "./Navbar.scss";
 
 function Navbar() {
-  const isSomeUserloggedIn = useAppSelector(
+  const isUserloggedIn = useAppSelector(
     (state) => state.userReducer.isUserLoggedIn
   );
   return (
@@ -16,7 +16,7 @@ function Navbar() {
         <Link to="/">
           <div className="brand-logo my-logo">R & M Multiverse</div>
         </Link>
-        {isSomeUserloggedIn ? <SignedInLink /> : <SignedOutLink />}
+        {isUserloggedIn ? <SignedInLink /> : <SignedOutLink />}
       </div>
     </nav>
   );

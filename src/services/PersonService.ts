@@ -6,9 +6,6 @@ export const personAPI = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (build) => ({
-    fetchSearchedPersons: build.query({
-      query: (searchWord) => `/?name=${searchWord}`,
-    }),
     fetchPerson: build.query({
       query: (id) => `/${id}`,
     }),

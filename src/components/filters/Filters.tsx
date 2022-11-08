@@ -1,14 +1,12 @@
-import { useSearchParams } from "react-router-dom";
 import Select from "react-select";
-
 import { Filter } from "../../models/Filters";
 
 import "./Filters.scss";
 
 interface Props {
-  isFiltersActive: boolean;
-  setFilters: React.Dispatch<React.SetStateAction<Filter>>;
   filters: Filter;
+  isFiltersActive?: boolean;
+  setFilters: React.Dispatch<React.SetStateAction<Filter>>;
 }
 interface Option {
   value: string;
