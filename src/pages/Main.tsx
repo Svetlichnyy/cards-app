@@ -11,10 +11,10 @@ const Main = () => {
   let [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(1);
   const { data, isFetching } = personAPI.useFetchPageOfPersonsQuery({
-    page: searchParams.get("page") || "",
-    name: searchParams.get("name") || "",
-    status: searchParams.get("status") || "",
-    gender: searchParams.get("gender") || "",
+    page: searchParams.get("page"),
+    name: searchParams.get("name"),
+    status: searchParams.get("status"),
+    gender: searchParams.get("gender"),
   });
   let cardsField;
   if (data) {

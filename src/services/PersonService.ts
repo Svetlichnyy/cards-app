@@ -10,7 +10,7 @@ export const personAPI = createApi({
       query: (id) => `/${id}`,
     }),
     fetchPageOfPersons: build.query({
-      query: ({ page, name, status, gender }) => {
+      query: ({ page = "", name = "", status = "", gender = "" }) => {
         return {
           params: { page, name, status, gender },
           url: "/",

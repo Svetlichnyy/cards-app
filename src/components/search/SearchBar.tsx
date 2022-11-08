@@ -16,7 +16,6 @@ const SearchBar = () => {
 
   let navigate = useNavigate();
   const [name, setName] = useState("");
-  useEffect(() => {}, []);
   const handleClick = (e: React.SyntheticEvent) => {
     e.preventDefault();
     navigate(
