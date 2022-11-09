@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { personAPI } from "../services/personService";
+import { personAPI } from "../services/persService";
 import { Person } from "../models/Person";
 
 import Pagination from "../components/pagination/Pagination";
@@ -11,12 +11,12 @@ import CardSummary from "../components/cardSummary/CardSummary";
 
 const Main = () => {
   let [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(Number(searchParams.get("page")));
   const { data, isFetching } = personAPI.useFetchPageOfPersonsQuery({
-    page: searchParams.get("page") || "",
-    name: searchParams.get("name") || "",
-    status: searchParams.get("status") || "",
-    gender: searchParams.get("gender") || "",
+    page: searchParams.get("page"),
+    name: searchParams.get("name"),
+    status: searchParams.get("status"),
+    gender: searchParams.get("gender"),
   });
   let cardsField;
   if (data) {

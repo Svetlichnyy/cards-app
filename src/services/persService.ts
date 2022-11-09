@@ -25,8 +25,14 @@ export const personAPI = createApi({
 
     fetchPageOfPersons: build.query({
       query: ({ page, name, status, gender }) => {
+        const isNull = (val: any) => (val ? val : "");
         return {
-          params: { page, name, status, gender },
+          params: {
+            page: page ? page : 1,
+            name: isNull(name),
+            status: isNull(status),
+            gender: isNull(gender),
+          },
           url: "/",
         };
       },

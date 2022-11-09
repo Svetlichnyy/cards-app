@@ -18,19 +18,11 @@ export const setToFavorites = (card: Person, loggedUserLogin: string): void => {
   );
 };
 
-const getUser = (loggedUserLogin: string) => {
-  let user: User;
-  const userStr = localStorage.getItem(`user_${loggedUserLogin}`);
-
-  if (userStr) {
-    return (user = JSON.parse(userStr));
-  }
+const getUser = (loggedUserLogin: string): User => {
+  return JSON.parse(
+    localStorage.getItem(`user_${loggedUserLogin}`) as string
+  ) as User;
 };
-export const getLastUser = () => {
-  let user: User;
-  const userStr = localStorage.getItem(`lastAuthedUser`);
-
-  if (userStr) {
-    return (user = JSON.parse(userStr));
-  }
+export const getLastUser = (): User => {
+  return JSON.parse(localStorage.getItem(`lastAuthedUser`) as string) as User;
 };

@@ -13,16 +13,16 @@ type Pagination = {
 export default function Pagination({ page, setPage, pagesAmount }: Pagination) {
   let [searchParams, setSearchParams] = useSearchParams();
   const [formValue, setFormValue] = useState({
-    name: searchParams.get("name") || "",
-    status: searchParams.get("status") || "",
-    gender: searchParams.get("gender") || "",
-    page: searchParams.get("gender") || "1",
+    name: searchParams.get("name") as string,
+    status: searchParams.get("status") as string,
+    gender: searchParams.get("gender") as string,
+    page: searchParams.get("page") as string,
   });
 
   return (
     <ReactPaginate
       pageCount={pagesAmount}
-      forcePage={page === 2 ? 1 : page - 1}
+      forcePage={page - 1}
       containerClassName="pagination"
       previousLabel="Prev"
       nextClassName="next"

@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import userReducer from "./reducers/userSlice";
 import { storageMiddleware } from "../middlewares/localStorageMiddleware";
-import { personAPI } from "../services/personService";
+import { personAPI } from "../services/persService";
 
 const rootReducer = combineReducers({
   userReducer,

@@ -52,6 +52,3 @@ const CardSummary = ({ card }: CardProps) => {
 };
 
 export default CardSummary;
-function useSate(arg0: boolean): [any, any] {
-  throw new Error("Function not implemented.");
-}
