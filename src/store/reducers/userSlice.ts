@@ -3,20 +3,20 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface User {
   login: string;
   password: string;
+  favorites: number[];
 }
 interface UserState {
   authorizedUser: User;
   isUserLoggedIn: boolean;
-  favorites: number[];
 }
 
 const initialState: UserState = {
   authorizedUser: {
     login: "",
     password: "",
+    favorites: [],
   },
   isUserLoggedIn: false,
-  favorites: [],
 };
 
 export const userSlice = createSlice({
@@ -28,14 +28,16 @@ export const userSlice = createSlice({
       state.isUserLoggedIn = true;
     },
     signOutUser(state) {
-      state.authorizedUser = { login: "", password: "" };
+      state.authorizedUser = { login: "", password: "", favorites: [] };
       state.isUserLoggedIn = false;
     },
     setUserFavorites(state, action: PayloadAction<number>) {
-      if (state.favorites.includes(action.payload)) {
-        state.favorites.filter((value) => value !== action.payload);
+      if (state.authorizedUser.favorites.includes(action.payload)) {
+        state.authorizedUser.favorites = state.authorizedUser.favorites.filter(
+          (value) => value !== action.payload
+        );
       } else {
-        state.favorites.push(action.payload);
+        state.authorizedUser.favorites.push(action.payload);
       }
     },
   },

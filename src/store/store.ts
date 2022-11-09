@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import userReducer from "./reducers/userSlice";
-import { personAPI } from "../services/personService";
 import { storageMiddleware } from "../middlewares/localStorageMiddleware";
+import { personAPI } from "../services/personService";
 
 const rootReducer = combineReducers({
   userReducer,
@@ -13,7 +13,7 @@ export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(personAPI.middleware,storageMiddleware),
+      getDefaultMiddleware().concat(personAPI.middleware, storageMiddleware),
   });
 };
 

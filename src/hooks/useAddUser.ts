@@ -7,6 +7,11 @@ interface UserValues {
   login: string;
   password: string;
 }
+interface EnteredUser {
+  login: string;
+  password: string;
+  favorites: number[];
+}
 
 export const useAddUser = () => {
   const navigate = useNavigate();
@@ -30,6 +35,7 @@ export const useAddUser = () => {
 
   const checkAndLogin = (values: UserValues) => {
     const enteredUser = localStorage.getItem(`user_${values.login}`);
+    let parsedUser: EnteredUser;
     if (enteredUser) {
       parsedUser = JSON.parse(enteredUser);
     } else return "User with this login is not registered yet";
@@ -38,7 +44,7 @@ export const useAddUser = () => {
       parsedUser.login === values.login &&
       parsedUser.password === values.password
     ) {
-      dispatch(setAuthedUser(values));
+      dispatch(setAuthedUser(parsedUser));
       navigate("/search");
     } else if (
       parsedUser.login === values.login &&

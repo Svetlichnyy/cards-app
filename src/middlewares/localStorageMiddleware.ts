@@ -8,6 +8,7 @@ export const storageMiddleware: Middleware<{}, RootState> =
         `lastAuthedUser`,
         JSON.stringify(action.payload, null, 2)
       );
+      console.log(action.payload);
     }
     const result = next(action);
     return result;

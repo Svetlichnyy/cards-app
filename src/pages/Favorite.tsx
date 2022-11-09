@@ -7,20 +7,18 @@ import { Person } from "../models/Person";
 import { personAPI } from "../services/personService";
 
 const Favorite = () => {
-  const loggedUserLogin = useAppSelector(
-    (state) => state.userReducer.authorizedUser.login
-  );
-  const [selected, setSelected] = useState<number[]>(
-    getFavorites(loggedUserLogin)
+  const favorites = useAppSelector(
+    (state) => state.userReducer.authorizedUser.favorites
   );
   let cardsField;
-  const shouldFetch = selected.length > 0;
+  const shouldFetch = favorites.length > 0;
 
-  const { data, isFetching } = personAPI.useFetchPersonQuery(selected, {
+  const { data, isFetching } = personAPI.useFetchPersonQuery(favorites, {
     skip: !shouldFetch,
   });
+  console.log(typeof data);
 
-  if (data) {
+  if (Array.isArray(data)) {
     cardsField = data?.map((card: Person): JSX.Element => {
       return <CardSummary key={card.id} card={card} />;
     });

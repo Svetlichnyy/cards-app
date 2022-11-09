@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
 import { setToFavorites } from "../../features/userFavorites";
-import { useAppSelector } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { Person } from "../../models/Person";
+import { userSlice } from "../../store/reducers/userSlice";
 
 import "./CardSummary.scss";
 
@@ -11,11 +12,14 @@ type CardProps = {
 };
 
 const CardSummary = ({ card }: CardProps) => {
+  const dispatch = useAppDispatch();
+  const { setUserFavorites } = userSlice.actions;
   const loggedUserLogin = useAppSelector(
     (state) => state.userReducer.authorizedUser.login
   );
   const clickHandler = (e: React.MouseEvent<HTMLDivElement>): void => {
     setToFavorites(card, loggedUserLogin);
+    dispatch(setUserFavorites(card.id));
     e.stopPropagation();
   };
 
