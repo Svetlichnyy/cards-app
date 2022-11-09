@@ -1,22 +1,26 @@
-.card {
-  min-height: 500px;
-  .card-content {
-    padding: 1rem;
-    .card-title {
-      font-size: 20px;
+.card-wrap {
+  position: relative;
+  cursor: pointer;
+  .card {
+    min-height: 500px;
+    .card-content {
+      padding: 1rem;
+      .card-title {
+        font-size: 20px;
+      }
     }
-  }
-  .card-footer {
-    color: white;
-  }
-  p {
-    margin: 10px;
-  }
-  i {
-    font-size: 2.5rem;
-    color: white;
-    position: absolute;
-    bottom: 15px;
-    right: 15px;
+    .card-footer {
+      color: white;
+    }
+    p {
+      margin: 10px;
+    }
+    i {
+      font-size: 2.5rem;
+      color: white;
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+    }
   }
 }

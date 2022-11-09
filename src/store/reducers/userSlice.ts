@@ -7,6 +7,7 @@ interface User {
 interface UserState {
   authorizedUser: User;
   isUserLoggedIn: boolean;
+  favorites: number[];
 }
 
 const initialState: UserState = {
@@ -15,6 +16,7 @@ const initialState: UserState = {
     password: "",
   },
   isUserLoggedIn: false,
+  favorites: [],
 };
 
 export const userSlice = createSlice({
@@ -28,6 +30,13 @@ export const userSlice = createSlice({
     signOutUser(state) {
       state.authorizedUser = { login: "", password: "" };
       state.isUserLoggedIn = false;
+    },
+    setUserFavorites(state, action: PayloadAction<number>) {
+      if (state.favorites.includes(action.payload)) {
+        state.favorites.filter((value) => value !== action.payload);
+      } else {
+        state.favorites.push(action.payload);
+      }
     },
   },
 });

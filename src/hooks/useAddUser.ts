@@ -20,7 +20,7 @@ export const useAddUser = () => {
     if (!enteredUser) {
       localStorage.setItem(
         `user_${values.login}`,
-        JSON.stringify(values, null, 2)
+        JSON.stringify({ ...values, favorites: [] }, null, 2)
       );
       navigate("/signIn");
     } else {
@@ -30,7 +30,7 @@ export const useAddUser = () => {
 
   const checkAndLogin = (values: UserValues) => {
     const enteredUser = localStorage.getItem(`user_${values.login}`);
-    if (typeof enteredUser === "string") {
+    if (enteredUser) {
       parsedUser = JSON.parse(enteredUser);
     } else return "User with this login is not registered yet";
 

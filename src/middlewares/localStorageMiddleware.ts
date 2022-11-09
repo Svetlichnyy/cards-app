@@ -4,10 +4,9 @@ import { RootState } from "../store/store";
 export const storageMiddleware: Middleware<{}, RootState> =
   (store) => (next) => (action) => {
     if (action.type === "userFeatures/setAuthedUser") {
-      const state = store.getState();
       localStorage.setItem(
         `lastAuthedUser`,
-        JSON.stringify(state.userReducer.authorizedUser, null, 2)
+        JSON.stringify(action.payload, null, 2)
       );
     }
     const result = next(action);
