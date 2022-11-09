@@ -1,7 +1,5 @@
-import { useState } from "react";
 import CardSummary from "../components/cardSummary/CardSummary";
 import Loader from "../components/layout/loader/Loader";
-import { getFavorites } from "../features/userFavorites";
 import { useAppSelector } from "../hooks/redux";
 import { Person } from "../models/Person";
 import { personAPI } from "../services/personService";
@@ -16,13 +14,14 @@ const Favorite = () => {
   const { data, isFetching } = personAPI.useFetchPersonQuery(favorites, {
     skip: !shouldFetch,
   });
-  console.log(typeof data);
 
   if (Array.isArray(data)) {
     cardsField = data?.map((card: Person): JSX.Element => {
       return <CardSummary key={card.id} card={card} />;
     });
-  } else {
+  } else if (!Array.isArray(data)) {
+    cardsField = <CardSummary card={data} />;
+  } else if (!data) {
     cardsField = <div>No characters</div>;
   }
 

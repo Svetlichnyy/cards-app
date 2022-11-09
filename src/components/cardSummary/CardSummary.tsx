@@ -14,6 +14,9 @@ type CardProps = {
 const CardSummary = ({ card }: CardProps) => {
   const dispatch = useAppDispatch();
   const { setUserFavorites } = userSlice.actions;
+  const favorites = useAppSelector(
+    (state) => state.userReducer.authorizedUser.favorites
+  );
   const loggedUserLogin = useAppSelector(
     (state) => state.userReducer.authorizedUser.login
   );
@@ -41,8 +44,7 @@ const CardSummary = ({ card }: CardProps) => {
           First reveal : {new Date(card.created).toLocaleDateString()}
         </p>
         <i className="material-icons" onClick={clickHandler}>
-          {/* {isfavorite ? "favorite" : "favorite_border"} */}
-          favorite
+          {favorites.includes(card.id) ? "favorite" : "favorite_border"}
         </i>
       </div>
     </div>

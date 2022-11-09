@@ -18,8 +18,6 @@ export const useAddUser = () => {
   const { setAuthedUser } = userSlice.actions;
   const dispatch = useAppDispatch();
 
-  let parsedUser: UserValues;
-
   const checkAndRegister = (values: UserValues) => {
     const enteredUser = localStorage.getItem(`user_${values.login}`);
     if (!enteredUser) {

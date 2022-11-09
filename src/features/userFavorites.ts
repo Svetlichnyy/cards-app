@@ -18,14 +18,17 @@ export const setToFavorites = (card: Person, loggedUserLogin: string): void => {
   );
 };
 
-export const getFavorites = (loggedUserLogin: string): number[] => {
-  const loggedUser: User = getUser(loggedUserLogin);
-  return loggedUser.favorites;
-};
-
 const getUser = (loggedUserLogin: string) => {
   let user: User;
   const userStr = localStorage.getItem(`user_${loggedUserLogin}`);
+
+  if (userStr) {
+    return (user = JSON.parse(userStr));
+  }
+};
+export const getLastUser = () => {
+  let user: User;
+  const userStr = localStorage.getItem(`lastAuthedUser`);
 
   if (userStr) {
     return (user = JSON.parse(userStr));
