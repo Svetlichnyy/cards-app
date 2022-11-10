@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import { Person } from "../models/Person";
+import isNull from "../utils/isNull";
 
 const BASE_URL = "https://rickandmortyapi.com/api/character";
 //
@@ -25,7 +25,6 @@ export const personAPI = createApi({
 
     fetchPageOfPersons: build.query({
       query: ({ page, name, status, gender }) => {
-        const isNull = (val: any) => (val ? val : "");
         return {
           params: {
             page: page ? page : 1,

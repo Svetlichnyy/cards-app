@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "./redux";
 
 import { userSlice } from "../store/reducers/userSlice";
+import { FilterForm } from "../models/Filters";
 
 interface UserValues {
   login: string;
@@ -11,6 +12,7 @@ interface EnteredUser {
   login: string;
   password: string;
   favorites: number[];
+  history: FilterForm[];
 }
 
 export const useAddUser = () => {
@@ -23,7 +25,7 @@ export const useAddUser = () => {
     if (!enteredUser) {
       localStorage.setItem(
         `user_${values.login}`,
-        JSON.stringify({ ...values, favorites: [] }, null, 2)
+        JSON.stringify({ ...values, favorites: [], history: [] }, null, 2)
       );
       navigate("/signIn");
     } else {

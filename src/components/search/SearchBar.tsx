@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { setToHistory } from "../../features/userHistory";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 
 import { Filter } from "../../models/Filters";
+import { userSlice } from "../../store/reducers/userSlice";
 import Filters from "../filters/Filters";
 
 import "./SearchBar.scss";
 
 const SearchBar = () => {
+  const dispatch = useAppDispatch();
+  const { setUserHistory } = userSlice.actions;
+  const loggedUserLogin = useAppSelector(
+    (state) => state.userReducer.authorizedUser.login
+  );
+  console.log(loggedUserLogin);
+
   const [options, setOptions] = useState<Filter>({
     gender: "",
     status: "",
@@ -27,6 +37,14 @@ const SearchBar = () => {
         options.gender +
         "&page=1"
     );
+    const query = {
+      name,
+      status: options.status,
+      gender: options.gender,
+      page: 1,
+    };
+    setToHistory(query, loggedUserLogin);
+    dispatch(setUserHistory(query));
   };
 
   const showFilters = () => {

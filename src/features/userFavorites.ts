@@ -1,5 +1,6 @@
 import { Person } from "../models/Person";
 import { User } from "../models/User";
+import { getUser } from "./userFeatures";
 
 export const setToFavorites = (card: Person, loggedUserLogin: string): void => {
   const loggedUser: User = getUser(loggedUserLogin);
@@ -16,13 +17,5 @@ export const setToFavorites = (card: Person, loggedUserLogin: string): void => {
     `user_${loggedUser.login}`,
     `${JSON.stringify(loggedUser)}`
   );
-};
-
-const getUser = (loggedUserLogin: string): User => {
-  return JSON.parse(
-    localStorage.getItem(`user_${loggedUserLogin}`) as string
-  ) as User;
-};
-export const getLastUser = (): User => {
-  return JSON.parse(localStorage.getItem(`lastAuthedUser`) as string) as User;
+  localStorage.setItem("lastAuthedUser", `${JSON.stringify(loggedUser)}`);
 };

@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getLastUser } from "../../../features/userFavorites";
+import { getLastUser } from "../../../features/userFeatures";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
+import { User } from "../../../models/User";
 import { userSlice } from "../../../store/reducers/userSlice";
 
 import SignedInLink from "../SignedInLink";
@@ -13,7 +14,8 @@ function Navbar() {
   const dispatch = useAppDispatch();
   const { setAuthedUser } = userSlice.actions;
   useEffect(() => {
-    dispatch(setAuthedUser(getLastUser()));
+    const lastUser = getLastUser();
+    if (lastUser) dispatch(setAuthedUser(lastUser));
   }, []);
 
   const isUserloggedIn = useAppSelector(

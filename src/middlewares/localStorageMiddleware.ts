@@ -9,6 +9,9 @@ export const storageMiddleware: Middleware<{}, RootState> =
         JSON.stringify(action.payload, null, 2)
       );
     }
+    if (action.type === "userFeatures/signOutUser") {
+      localStorage.removeItem(`lastAuthedUser`);
+    }
     const result = next(action);
     return result;
   };
