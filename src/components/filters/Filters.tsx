@@ -1,4 +1,5 @@
 import Select from "react-select";
+
 import { Filter } from "../../models/Filters";
 
 import "./Filters.scss";

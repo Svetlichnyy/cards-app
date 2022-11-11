@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+
 import { getLastUser } from "../../../features/userFeatures";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import useTheme from "../../../hooks/useTheme";
 import { userSlice } from "../../../store/reducers/userSlice";
-
+import useTheme from "../../../hooks/useTheme";
 import SignedInLink from "../SignedInLink";
 import SignedOutLink from "../SignedOutLink";
 
@@ -14,6 +14,7 @@ function Navbar() {
   const { setIsDark, isDark } = useTheme();
   const dispatch = useAppDispatch();
   const { setAuthedUser } = userSlice.actions;
+
   useEffect(() => {
     const lastUser = getLastUser();
     if (lastUser) dispatch(setAuthedUser(lastUser));
@@ -22,6 +23,7 @@ function Navbar() {
   const isUserloggedIn = useAppSelector(
     (state) => state.userReducer.isUserLoggedIn
   );
+
   return (
     <nav className="navbar">
       <div className={"nav-wrapper"}>

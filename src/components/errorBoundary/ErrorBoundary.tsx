@@ -1,12 +1,16 @@
 import { Component, ReactNode } from "react";
 import { toast } from "materialize-css";
+
 import Error from "./Error";
+
 interface Props {
   children: ReactNode;
 }
+
 interface State {
   hasError: boolean;
 }
+
 class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -20,11 +24,7 @@ class ErrorBoundary extends Component<Props, State> {
   }
   render() {
     if (this.state.hasError) {
-      return (
-        <>
-          <Error />
-        </>
-      );
+      return <Error />;
     }
     return this.props.children;
   }

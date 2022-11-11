@@ -21,9 +21,9 @@ const CardSummary = ({ card }: CardProps) => {
     (state) => state.userReducer.authorizedUser.login
   );
   const clickHandler = (e: React.MouseEvent<HTMLDivElement>): void => {
+    e.stopPropagation();
     setToFavorites(card, loggedUserLogin);
     dispatch(setUserFavorites(card.id));
-    e.stopPropagation();
   };
 
   const navigate = useNavigate();

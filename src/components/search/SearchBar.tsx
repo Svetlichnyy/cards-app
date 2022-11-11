@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { DebounceInput } from "react-debounce-input";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { setToHistory } from "../../features/userHistory";
 import { userSlice } from "../../store/reducers/userSlice";
-import { Filter } from "../../models/Filters";
-import Filters from "../filters/Filters";
-
-import { DebounceInput } from "react-debounce-input";
-import { Person } from "../../models/Person";
 import Suggestions from "../suggestions/Suggestions";
+import { Filter } from "../../models/Filters";
+import { Person } from "../../models/Person";
+import Filters from "../filters/Filters";
 
 import "./SearchBar.scss";
 

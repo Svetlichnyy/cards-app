@@ -1,3 +1,3 @@
-export default function (val: any) {
+export default function checkNull(val: any) {
   return val ? val : "";
 }

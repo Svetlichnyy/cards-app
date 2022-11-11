@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Filter, FilterFormParams } from "../../models/Filters";
+import { FilterFormParams } from "../../models/Filters";
 
 interface User {
   login: string;

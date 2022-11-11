@@ -6,18 +6,17 @@ import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
 import ProtectedRoute from "./features/protectedRoute";
 import Authorization from "./components/auth/AuthorizationForm";
 import Navbar from "./components/layout/navbar/Navbar";
+import Loader from "./components/layout/loader/Loader";
 import ThemeLayout from "./components/layout/ThemeLayout";
 import CardDetails from "./pages/cardDetails/CardDetails";
 import Homepage from "./pages/homepage/Homepage";
-// import Favorite from "./pages/Favorite";
 import History from "./pages/History";
 import Main from "./pages/Main";
 
 import "./App.scss";
-import Loader from "./components/layout/loader/Loader";
+const Favorite = lazy(() => import("./pages/Favorite"));
 
 function App() {
-  const Favorite = lazy(() => import("./pages/Favorite"));
   return (
     <ErrorBoundary>
       <ThemeProvider>

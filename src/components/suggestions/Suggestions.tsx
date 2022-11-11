@@ -1,4 +1,3 @@
-import { Dispatch } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Person } from "../../models/Person";

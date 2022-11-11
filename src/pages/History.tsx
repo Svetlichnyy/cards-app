@@ -13,7 +13,7 @@ const History = () => {
         <div className="collection">
           {history?.length
             ? history.map((params: FilterFormParams, index: number) => {
-                // uniq kluchei net :(
+                // there is no unique keys =(
                 return (
                   <Link
                     key={index}
