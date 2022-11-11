@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-import { personAPI } from "../../services/personService";
+import { personAPI } from "../../services/persService";
 
 import "./CardDetails.scss";
 

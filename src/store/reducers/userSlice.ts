@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Filter, FilterForm } from "../../models/Filters";
 
 interface User {
   login: string;
   password: string;
+  favorites: number[];
+  history: FilterForm[];
 }
 interface UserState {
   authorizedUser: User;
@@ -13,6 +16,8 @@ const initialState: UserState = {
   authorizedUser: {
     login: "",
     password: "",
+    favorites: [],
+    history: [],
   },
   isUserLoggedIn: false,
 };
@@ -26,8 +31,25 @@ export const userSlice = createSlice({
       state.isUserLoggedIn = true;
     },
     signOutUser(state) {
-      state.authorizedUser = { login: "", password: "" };
+      state.authorizedUser = {
+        login: "",
+        password: "",
+        favorites: [],
+        history: [],
+      };
       state.isUserLoggedIn = false;
+    },
+    setUserFavorites(state, action: PayloadAction<number>) {
+      if (state.authorizedUser.favorites.includes(action.payload)) {
+        state.authorizedUser.favorites = state.authorizedUser.favorites.filter(
+          (value) => value !== action.payload
+        );
+      } else {
+        state.authorizedUser.favorites.push(action.payload);
+      }
+    },
+    setUserHistory(state, action: PayloadAction<FilterForm>) {
+      state.authorizedUser.history.push(action.payload);
     },
   },
 });

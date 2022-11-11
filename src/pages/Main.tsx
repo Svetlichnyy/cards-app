@@ -1,15 +1,17 @@
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
+import { personAPI } from "../services/persService";
+import { Person } from "../models/Person";
+
 import Pagination from "../components/pagination/Pagination";
 import Loader from "../components/layout/loader/Loader";
 import SearchBar from "../components/search/SearchBar";
-import { Link, useSearchParams } from "react-router-dom";
-import { personAPI } from "../services/personService";
 import CardSummary from "../components/cardSummary/CardSummary";
-import { Person } from "../models/Person";
-import { useState } from "react";
 
 const Main = () => {
   let [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(Number(searchParams.get("page")));
   const { data, isFetching } = personAPI.useFetchPageOfPersonsQuery({
     page: searchParams.get("page"),
     name: searchParams.get("name"),
@@ -19,11 +21,7 @@ const Main = () => {
   let cardsField;
   if (data) {
     cardsField = data.results.map((card: Person): JSX.Element => {
-      return (
-        <Link key={card.id} to={"/card/" + card.id}>
-          <CardSummary key={card.id} card={card} />
-        </Link>
-      );
+      return <CardSummary key={card.id} card={card} />;
     });
   } else {
     cardsField = <div>No characters</div>;
