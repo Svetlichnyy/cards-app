@@ -56,7 +56,7 @@ const AuthorizationForm = () => {
   });
 
   return (
-    <div className="container">
+    <div className="container authorization">
       <div className="row">
         <div className="col s12 m4 l2"></div>
         <div className="col s12 m4 l8 center-align wrap">
@@ -87,10 +87,7 @@ const AuthorizationForm = () => {
               {formik.errors.password ? <p>{formik.errors.password}</p> : null}
             </div>
 
-            <button
-              className="btn indigo lighten-2 waves-effect waves-light"
-              type="submit"
-            >
+            <button className="btn waves-effect waves-light" type="submit">
               Submit
               <i className="material-icons right">send</i>
             </button>

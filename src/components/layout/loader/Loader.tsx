@@ -6,7 +6,7 @@ export default function Loader() {
       <div className="row">
         <div className="col s12 m4 l2"></div>
         <div className="col s12 m4 l8 center-align">
-          <div className="preloader-wrapper big active">
+          <div className="preloader-wrapper big active loading">
             <div className="spinner-layer spinner-blue">
               <div className="circle-clipper left">
                 <div className="circle"></div>

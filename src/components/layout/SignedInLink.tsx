@@ -11,7 +11,10 @@ const SignedInLink = () => {
     dispatch(signOutUser());
   };
   return (
-    <ul id="nav-mobile" className="right hide-on-med-and-down">
+    <ul
+      id="nav-mobile"
+      className="right hide-on-med-and-down signed-in-buttons"
+    >
       <li>
         <Link to="/favorite"> Favorite </Link>
       </li>
@@ -19,10 +22,7 @@ const SignedInLink = () => {
         <Link to="/history"> History </Link>
       </li>
       <li>
-        <button
-          className="btn waves-effect light-blue darken-2"
-          onClick={handleClick}
-        >
+        <button className="btn waves-effect" onClick={handleClick}>
           <Link to="/"> Log Out </Link>
         </button>
       </li>

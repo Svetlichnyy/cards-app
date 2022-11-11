@@ -38,7 +38,7 @@ const Main = () => {
         <SearchBar />
         {cardsField}
       </div>
-      <div className="row center-align">
+      <div className="row center-align pag-row">
         <Pagination pagesAmount={pagesAmount} page={page} setPage={setPage} />
       </div>
     </div>

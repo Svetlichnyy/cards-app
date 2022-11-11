@@ -1,19 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import isNull from "../utils/isNull";
+import { Person } from "../models/Person";
+import checkNull from "../utils/checkNull";
 
 const BASE_URL = "https://rickandmortyapi.com/api/character";
-//
-//      Оно понадобится позже,правда...
-//
-// interface IdResponse {
-//   status: string;
-//   endpointName: string;
-//   requestId: string;
-//   originalArgs: number[] | number;
-//   startedTimeStamp: number;
-//   data: Person[] | Person;
-//   fulfilledTimeStamp: number;
-// }
 
 export const personAPI = createApi({
   reducerPath: "api",
@@ -23,14 +12,25 @@ export const personAPI = createApi({
       query: (id) => `/${id}`,
     }),
 
+    fetchFavorites: build.query({
+      query: (favorites) => `/${favorites}`,
+      transformResponse: (responseData: Person[] | Person) => {
+        if (Array.isArray(responseData)) {
+          return responseData;
+        } else {
+          return [responseData];
+        }
+      },
+    }),
+
     fetchPageOfPersons: build.query({
       query: ({ page, name, status, gender }) => {
         return {
           params: {
             page: page ? page : 1,
-            name: isNull(name),
-            status: isNull(status),
-            gender: isNull(gender),
+            name: checkNull(name),
+            status: checkNull(status),
+            gender: checkNull(gender),
           },
           url: "/",
         };

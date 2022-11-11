@@ -13,10 +13,10 @@ const Details = () => {
   return (
     <>
       {person && (
-        <div className="container section">
+        <div className="container section card-details">
           <button
             onClick={() => navigate(-1)}
-            className="material-icons btn indigo lighten-1 arrow"
+            className="material-icons btn arrow"
           >
             arrow_back
           </button>

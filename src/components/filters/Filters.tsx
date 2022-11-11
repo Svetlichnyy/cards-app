@@ -7,13 +7,19 @@ interface Props {
   filters: Filter;
   isFiltersActive?: boolean;
   setFilters: React.Dispatch<React.SetStateAction<Filter>>;
+  seIsSuggestionsActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 interface Option {
   value: string;
   label: string;
 }
 
-function Filters({ isFiltersActive, setFilters, filters }: Props) {
+function Filters({
+  isFiltersActive,
+  setFilters,
+  filters,
+  seIsSuggestionsActive,
+}: Props) {
   const status: Option[] = [
     { value: "alive", label: "Alive" },
     { value: "dead", label: "Dead" },
@@ -46,12 +52,14 @@ function Filters({ isFiltersActive, setFilters, filters }: Props) {
         options={status}
         placeholder={"Filter by status..."}
         onChange={handleChangeStatus}
+        onFocus={() => seIsSuggestionsActive(false)}
       />
       <Select
         className="select"
         options={gender}
         placeholder={"Filter by gender..."}
         onChange={handleChangeGender}
+        onFocus={() => seIsSuggestionsActive(false)}
       />
     </div>
   );

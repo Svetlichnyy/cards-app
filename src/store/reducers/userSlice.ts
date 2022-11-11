@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Filter, FilterForm } from "../../models/Filters";
+import { Filter, FilterFormParams } from "../../models/Filters";
 
 interface User {
   login: string;
   password: string;
   favorites: number[];
-  history: FilterForm[];
+  history: FilterFormParams[];
 }
 interface UserState {
   authorizedUser: User;
@@ -48,7 +48,7 @@ export const userSlice = createSlice({
         state.authorizedUser.favorites.push(action.payload);
       }
     },
-    setUserHistory(state, action: PayloadAction<FilterForm>) {
+    setUserHistory(state, action: PayloadAction<FilterFormParams>) {
       state.authorizedUser.history.push(action.payload);
     },
   },

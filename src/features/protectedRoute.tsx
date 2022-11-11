@@ -1,10 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAppSelector } from "../hooks/redux";
+import { getLastUser } from "./userFeatures";
 
 function ProtectedRoute() {
-  const isUserLoggedIn = useAppSelector(
-    (state) => state.userReducer.isUserLoggedIn
-  );
+  const isUserLoggedIn = getLastUser();
   return isUserLoggedIn ? <Outlet /> : <Navigate to="/signIn" />;
 }
 export default ProtectedRoute;

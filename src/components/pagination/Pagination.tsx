@@ -27,7 +27,7 @@ export default function Pagination({ page, setPage, pagesAmount }: Pagination) {
       previousLabel="Prev"
       nextClassName="next"
       previousClassName="prev"
-      pageClassName="btn-floating waves-effect page waves-light indigo lighten-2 "
+      pageClassName="btn-floating waves-effect page waves-light "
       activeClassName="curPage"
       disabledClassName="disabled"
       pageRangeDisplayed={3}
