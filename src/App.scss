@@ -1,3 +1,106 @@
-body {
-  background-color: rgb(223, 224, 224);
+[data-theme="true"] {
+  --main: #fafafa;
+  --accent: #7986cb;
+  --text: #3c3837;
+}
+[data-theme="false"] {
+  --main: #424242;
+  --accent: #212121;
+  --text: #76ff03;
+}
+.App {
+  color: var(--text);
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  background-color: var(--main);
+  .loading {
+    margin-top: 50px;
+  }
+  .authorization {
+    button {
+      background-color: var(--accent);
+      color: var(--text);
+    }
+  }
+  .navbar {
+    .nav-wrapper {
+      background-color: var(--main);
+      color: var(--text);
+      .signed-in-buttons {
+        background-color: var(--main);
+        color: var(--text);
+        button {
+          background-color: var(--accent);
+          color: var(--text);
+        }
+      }
+      .nav-buttons {
+        li {
+          background-color: var(--main);
+          color: var(--text);
+          a {
+            color: var(--text);
+          }
+        }
+      }
+    }
+    .my-logo {
+      color: var(--text);
+    }
+  }
+  .history {
+    .collection {
+      .collection-item {
+        background-color: var(--accent);
+        color: var(--text);
+      }
+    }
+  }
+  .card-details {
+    button {
+      background-color: var(--text);
+      color: var(--accent);
+    }
+  }
+  .input-field {
+    background-color: var(--accent);
+    button {
+      background-color: var(--text);
+      color: var(--accent);
+    }
+  }
+  .pag-row {
+    margin-bottom: 0px;
+    .pagination {
+      padding-bottom: 0px;
+    }
+    li {
+      background-color: var(--text);
+      a {
+        color: var(--main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 5px;
+      }
+    }
+  }
+  .card-summary {
+    background-color: var(--accent);
+    border: 1px solid var(--accent);
+    color: var(--text);
+    span {
+      font-weight: 600;
+      margin-top: 15px;
+      color: var(--text);
+    }
+    img {
+      border-radius: 15px;
+    }
+    .card-footer {
+      position: absolute;
+      bottom: 70px;
+    }
+  }
 }

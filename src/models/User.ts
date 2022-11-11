@@ -1,8 +1,8 @@
-import { FilterForm } from "./Filters";
+import { FilterFormParams } from "./Filters";
 
 export interface User {
   login: string;
   password: string;
   favorites: number[];
-  history: FilterForm[];
+  history: FilterFormParams[];
 }

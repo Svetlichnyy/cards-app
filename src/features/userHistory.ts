@@ -1,9 +1,9 @@
-import { FilterForm } from "../models/Filters";
+import { FilterFormParams } from "../models/Filters";
 import { User } from "../models/User";
 import { getUser } from "./userFeatures";
 
 export const setToHistory = (
-  query: FilterForm,
+  query: FilterFormParams,
   loggedUserLogin: string
 ): void => {
   const loggedUser: User = getUser(loggedUserLogin);

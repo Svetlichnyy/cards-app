@@ -1,22 +1,23 @@
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/redux";
-import { FilterForm } from "../models/Filters";
+import { FilterFormParams } from "../models/Filters";
 
 const History = () => {
   const history = useAppSelector(
     (state) => state.userReducer.authorizedUser.history
   );
   return (
-    <div className="container">
+    <div className="container history">
       <div className="row">
+        <h3>History</h3>
         <div className="collection">
           {history?.length
-            ? history.map((params: FilterForm, index) => {
-                // uniq kluchei net :(
+            ? history.map((params: FilterFormParams, index: number) => {
+                // there is no unique keys =(
                 return (
                   <Link
                     key={index}
-                    className="collection-item indigo lighten-1"
+                    className="collection-item"
                     to={`/search?name=${params.name}&status=${params.status}&gender=${params.gender}&page=${params.page}`}
                   >
                     {JSON.stringify(params)}

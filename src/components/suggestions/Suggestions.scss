@@ -1,0 +1,26 @@
+.row {
+  .hide {
+    display: none;
+  }
+  .collection {
+    position: fixed;
+    z-index: 100;
+    border: none;
+    border-radius: 5px;
+    .collection-item {
+      cursor: pointer;
+      color: black;
+      .title {
+        font-size: 1.3rem;
+      }
+      .arrow {
+        position: absolute;
+        right: 10px;
+        top: 20px;
+      }
+      img {
+        margin-top: 13px;
+      }
+    }
+  }
+}

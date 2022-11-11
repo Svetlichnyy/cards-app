@@ -11,20 +11,16 @@ const Favorite = () => {
   let cardsField;
   const shouldFetch = favorites.length > 0;
 
-  const { data, isFetching } = personAPI.useFetchPersonQuery(favorites, {
+  const { data, isFetching } = personAPI.useFetchFavoritesQuery(favorites, {
     skip: !shouldFetch,
   });
   if (data && Array.isArray(data)) {
     cardsField = data?.map((card: Person): JSX.Element => {
       return <CardSummary key={card.id} card={card} />;
     });
-  } else if (data && !Array.isArray(data)) {
-    cardsField = <CardSummary card={data} />;
-  } else if (!data) {
-    cardsField = <div>No characters</div>;
   }
   if (!favorites[0]) {
-    cardsField = <div>No characters</div>;
+    cardsField = <h2>No characters</h2>;
   }
 
   if (isFetching) {
@@ -33,7 +29,10 @@ const Favorite = () => {
 
   return (
     <div className="container">
-      <div className="row center-align">{cardsField}</div>
+      <div className="row center-align">
+        <h3>Favorites</h3>
+        {cardsField}
+      </div>
     </div>
   );
 };

@@ -21,9 +21,9 @@ const CardSummary = ({ card }: CardProps) => {
     (state) => state.userReducer.authorizedUser.login
   );
   const clickHandler = (e: React.MouseEvent<HTMLDivElement>): void => {
+    e.stopPropagation();
     setToFavorites(card, loggedUserLogin);
     dispatch(setUserFavorites(card.id));
-    e.stopPropagation();
   };
 
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const CardSummary = ({ card }: CardProps) => {
       className=" col s12 l3  card-wrap"
       onClick={() => navigate("/card/" + card.id)}
     >
-      <div className="card indigo lighten-2">
+      <div className="card card-summary">
         <div className="card-content white-text">
           <div className="card-image">
             <img src={card.image} alt="Coming soon..." />

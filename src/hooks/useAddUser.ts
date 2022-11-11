@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "./redux";
 
 import { userSlice } from "../store/reducers/userSlice";
-import { FilterForm } from "../models/Filters";
+import { FilterFormParams } from "../models/Filters";
 
 interface UserValues {
   login: string;
@@ -12,7 +12,7 @@ interface EnteredUser {
   login: string;
   password: string;
   favorites: number[];
-  history: FilterForm[];
+  history: FilterFormParams[];
 }
 
 export const useAddUser = () => {

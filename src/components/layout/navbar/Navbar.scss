@@ -1,4 +1,10 @@
 nav {
+  .nav-wrapper {
+    .theme {
+      cursor: pointer;
+      padding: 0 15px;
+    }
+  }
   .my-logo {
     padding-left: 25px;
   }
