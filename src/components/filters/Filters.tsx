@@ -47,21 +47,23 @@ function Filters({
   };
 
   return (
-    <div className={isFiltersActive ? "wrapper left-align" : "wrap disabled"}>
-      <Select
-        className="select"
-        options={status}
-        placeholder={"Filter by status..."}
-        onChange={handleChangeStatus}
-        onFocus={() => seIsSuggestionsActive(false)}
-      />
-      <Select
-        className="select"
-        options={gender}
-        placeholder={"Filter by gender..."}
-        onChange={handleChangeGender}
-        onFocus={() => seIsSuggestionsActive(false)}
-      />
+    <div className="filters">
+      <div className={isFiltersActive ? "wrapper left-align" : "disabled"}>
+        <Select
+          className="select"
+          options={status}
+          placeholder={"Filter by status..."}
+          onChange={handleChangeStatus}
+          onFocus={() => seIsSuggestionsActive(false)}
+        />
+        <Select
+          className="select"
+          options={gender}
+          placeholder={"Filter by gender..."}
+          onChange={handleChangeGender}
+          onFocus={() => seIsSuggestionsActive(false)}
+        />
+      </div>
     </div>
   );
 }

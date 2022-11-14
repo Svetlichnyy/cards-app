@@ -33,8 +33,9 @@ const Details = () => {
             <div className="card-action">
               <p>
                 Location : {person.location.name} <br />
-                Home place : {person.location.name} <br />
-                Gender : {person.gender}
+                Origin : {person.origin.name} <br />
+                Gender : {person.gender} <br />
+                Species : {person.species}
               </p>
             </div>
           </div>

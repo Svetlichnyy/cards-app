@@ -33,6 +33,11 @@ function Navbar() {
         <ul id="nav-mobile" className="right hide-on-med-and-down nav-buttons">
           <li>{isUserloggedIn ? <SignedInLink /> : <SignedOutLink />}</li>
           <li>
+            <Link to="/search">
+              <i className="material-icons theme">home</i>
+            </Link>
+          </li>
+          <li>
             <i
               className="material-icons theme"
               onClick={() => setIsDark(!isDark)}
