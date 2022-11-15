@@ -20,10 +20,9 @@ const History = () => {
                     className="collection-item"
                     to={`/search?name=${params.name}&status=${params.status}&gender=${params.gender}&page=${params.page}`}
                   >
-                    {params.name ? ` | Name : ${params.name}` : null}
+                    {params.name ? ` | Text : ${params.name}` : null}
                     {params.status ? ` | Status : ${params.status}` : null}
                     {params.gender ? ` | Gender : ${params.gender}` : null}
-                    {params.page ? ` | On page : ${params.page}` : null}
                   </Link>
                 );
               })

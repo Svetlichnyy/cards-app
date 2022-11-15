@@ -129,7 +129,11 @@
     }
     .card-footer {
       position: absolute;
-      bottom: 70px;
+      bottom: 50px;
+      display: block;
+      margin: 0 auto;
+      padding-left: 20px;
+      font-weight: 300;
     }
   }
 }

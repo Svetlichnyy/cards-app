@@ -27,7 +27,10 @@ const SearchBar = () => {
   const [error, setError] = useState("");
   const [name, setName] = useState("");
   const [isSuggestionsActive, seIsSuggestionsActive] = useState(false);
-
+  const history = useAppSelector(
+    (state) => state.userReducer.authorizedUser.history
+  );
+  const lastHistoryItem = history[history.length - 1];
   useEffect(() => {
     if (name !== "" || options.status !== "" || options.gender !== "") {
       fetch(
@@ -69,16 +72,19 @@ const SearchBar = () => {
       gender: options.gender,
       page: 1,
     };
-    setToHistory(query, loggedUserLogin);
-    dispatch(setUserHistory(query));
+    if (query.gender !== "" || query.name !== "" || query.status !== "") {
+      if (JSON.stringify(lastHistoryItem) !== JSON.stringify(query)) {
+        console.log(lastHistoryItem);
+        console.log(query);
+
+        setToHistory(query, loggedUserLogin);
+        dispatch(setUserHistory(query));
+      }
+    }
   };
 
   const showFilters = () => {
     setIsFiltersActive(!isFiltersActive);
-  };
-  const handleBlur = (e: any) => {
-    console.log(e);
-    seIsSuggestionsActive(false);
   };
 
   return (

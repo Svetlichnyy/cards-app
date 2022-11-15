@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useSearchParams } from "react-router-dom";
+import checkNull from "../../utils/checkNull";
 
 import "./Pagination.scss";
 
@@ -36,10 +37,10 @@ export default function Pagination({ page, setPage, pagesAmount }: Pagination) {
         const page = data.selected + 1;
         setPage(page);
         setSearchParams({
-          name: formValue.name,
-          status: formValue.status,
-          gender: formValue.gender,
-          page: page.toString(),
+          name: checkNull(formValue.name),
+          status: checkNull(formValue.status),
+          gender: checkNull(formValue.gender),
+          page: checkNull(page.toString()),
         });
       }}
     />
