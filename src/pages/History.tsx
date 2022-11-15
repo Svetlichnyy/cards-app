@@ -20,7 +20,9 @@ const History = () => {
                     className="collection-item"
                     to={`/search?name=${params.name}&status=${params.status}&gender=${params.gender}&page=${params.page}`}
                   >
-                    {JSON.stringify(params)}
+                    {params.name ? ` | Text : ${params.name}` : null}
+                    {params.status ? ` | Status : ${params.status}` : null}
+                    {params.gender ? ` | Gender : ${params.gender}` : null}
                   </Link>
                 );
               })

@@ -2,11 +2,24 @@
   .search-bar {
     .input-field {
       margin-top: 10px;
+      color: #dbdbdb;
       button {
         position: absolute;
         right: 55px;
         top: 15px;
       }
+      .input-field:focus {
+        color: #212121;
+      }
+      .input-field ~ .material-icons {
+        color: #dbdbdb;
+      }
     }
   }
+}
+.nav-wrapper .input-field input[type="search"] {
+  color: #dbdbdb;
+}
+.nav-wrapper .input-field input[type="search"] ~ .material-icons {
+  color: #dbdbdb;
 }

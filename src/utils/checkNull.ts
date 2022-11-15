@@ -1,3 +1,3 @@
 export default function checkNull(val: any) {
-  return val ? val : "";
+  return val && val !== "null" ? val : "";
 }

@@ -1,46 +1,30 @@
-# Getting Started with Create React App
+# React card application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+![](./public/images/neonR%26M.png)
 
-## Available Scripts
+## Требования к функциональности
 
-In the project directory, you can run:
+### React
 
-### `npm start`
+- Пишем функциональные компоненты c хуками в приоритете над классовыми.
+- Есть четкое разделение на умные и глупые компоненты. [cardSummary](./src/components/cardSummary/), [search](./src/components/search/)
+- Есть рендеринг списков [Main](./src/pages/Main.tsx), [Favorite](./src/pages/Favorite.tsx),[History](./src/pages/History.tsx)
+- Реализована хотя бы одна форма [AuthorizationForm](./src/components/auth/AuthorizationForm.tsx)
+- Есть применение Контекст API [ThemeProvider](./src/features/ThemeProvider.tsx) , [useTheme](./src/hooks/useTheme.ts)
+- Есть применение предохранителя [ErrorBoundary](./src/components/errorBoundary/ErrorBoundary.tsx)
+- Есть хотя бы один кастомный хук [Hooks](./src/hooks/)
+- Хотя бы несколько компонентов используют PropTypes [ThemeLayout](./src/components/layout/ThemeLayout.tsx), [ThemeProvider](./src/features/ThemeProvider.tsx), [ErrorBoundary](./src/components/errorBoundary/ErrorBoundary.tsx)
+- Поиск не должен триггерить много запросов к серверу: реализовано с помощью библиотеки react-debounce-input в компоненте [SearchBarComponent](./src/components/search/SearchBarComponent.tsx)
+- Есть применение lazy + Suspense: [App](./src/App.tsx)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Redux
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- Используем Modern Redux with Redux Toolkit: [store](./src/store/store.ts)
+- Используем слайсы [userSlice](./src/store/reducers/userSlice.ts)
+- Есть хотя бы одна кастомная мидлвара [LocalStorageMiddleware](./src/middlewares/localStorageMiddleware.ts)
+- Используется RTK Query [personService](./src/services/personService.ts)
+- Используется Transforming Responses [personService](./src/services/personService.ts)
 
-### `npm test`
+### Необязательно
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Использован Typescript

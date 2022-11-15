@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { personAPI } from "../services/persService";
+import { personAPI } from "../services/personService";
 import { Person } from "../models/Person";
 
 import Pagination from "../components/pagination/Pagination";

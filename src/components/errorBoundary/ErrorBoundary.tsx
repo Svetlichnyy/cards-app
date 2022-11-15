@@ -1,5 +1,6 @@
 import { Component, ReactNode } from "react";
 import { toast } from "materialize-css";
+import PropTypes from "prop-types";
 
 import Error from "./Error";
 
@@ -12,6 +13,7 @@ interface State {
 }
 
 class ErrorBoundary extends Component<Props, State> {
+  static propTypes: { children: any };
   constructor(props: Props) {
     super(props);
     this.state = { hasError: false };
@@ -29,5 +31,9 @@ class ErrorBoundary extends Component<Props, State> {
     return this.props.children;
   }
 }
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default ErrorBoundary;

@@ -7,12 +7,12 @@ interface User {
   favorites: number[];
   history: FilterFormParams[];
 }
-interface UserState {
+interface AuthorizedUser {
   authorizedUser: User;
   isUserLoggedIn: boolean;
 }
 
-const initialState: UserState = {
+const initialState: AuthorizedUser = {
   authorizedUser: {
     login: "",
     password: "",

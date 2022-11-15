@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DebounceInput } from "react-debounce-input";
 
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { setToHistory } from "../../features/userHistory";
 import { userSlice } from "../../store/reducers/userSlice";
-import Suggestions from "../suggestions/Suggestions";
 import { Filter } from "../../models/Filters";
 import { Person } from "../../models/Person";
-import Filters from "../filters/Filters";
 
 import "./SearchBar.scss";
+import SearchBarComponent from "./SearchBarComponent";
 
 const SearchBar = () => {
   let navigate = useNavigate();
@@ -29,7 +27,10 @@ const SearchBar = () => {
   const [error, setError] = useState("");
   const [name, setName] = useState("");
   const [isSuggestionsActive, seIsSuggestionsActive] = useState(false);
-
+  const history = useAppSelector(
+    (state) => state.userReducer.authorizedUser.history
+  );
+  const lastHistoryItem = history[history.length - 1];
   useEffect(() => {
     if (name !== "" || options.status !== "" || options.gender !== "") {
       fetch(
@@ -71,67 +72,34 @@ const SearchBar = () => {
       gender: options.gender,
       page: 1,
     };
-    setToHistory(query, loggedUserLogin);
-    dispatch(setUserHistory(query));
+    if (query.gender !== "" || query.name !== "" || query.status !== "") {
+      if (JSON.stringify(lastHistoryItem) !== JSON.stringify(query)) {
+        console.log(lastHistoryItem);
+        console.log(query);
+
+        setToHistory(query, loggedUserLogin);
+        dispatch(setUserHistory(query));
+      }
+    }
   };
 
   const showFilters = () => {
     setIsFiltersActive(!isFiltersActive);
   };
-  const handleBlur = (e: any) => {
-    console.log(e);
-    seIsSuggestionsActive(false);
-  };
 
   return (
-    <div className="row">
-      <div className="search-wrapper col s12 m4 l12 center-align">
-        <nav className="search-bar">
-          <div className="nav-wrapper light-blue darken-3">
-            <form>
-              <div className="input-field">
-                <DebounceInput
-                  autoComplete="off"
-                  onFocus={() => seIsSuggestionsActive(true)}
-                  minLength={2}
-                  debounceTimeout={500}
-                  onChange={(e) => handleDebounceInput(e.target.value)}
-                  placeholder="type something..."
-                  id="search"
-                  type="search"
-                  required
-                />
-                <label className="label-icon" htmlFor="search">
-                  <i className="material-icons">search</i>
-                </label>
-                <i className="material-icons" onClick={showFilters}>
-                  filter_list
-                </i>
-                <button
-                  onClick={handleClick}
-                  type="submit"
-                  className="button-search waves-effect btn"
-                >
-                  Search
-                </button>
-              </div>
-            </form>
-          </div>
-        </nav>
-        <Filters
-          filters={options}
-          setFilters={setOptions}
-          isFiltersActive={isFiltersActive}
-          seIsSuggestionsActive={seIsSuggestionsActive}
-        />
-        <Suggestions
-          seIsSuggestionsActive={seIsSuggestionsActive}
-          isSuggestionsActive={isSuggestionsActive}
-          suggestions={suggestions}
-          error={error}
-        />
-      </div>
-    </div>
+    <SearchBarComponent
+      seIsSuggestionsActive={seIsSuggestionsActive}
+      handleDebounceInput={handleDebounceInput}
+      showFilters={showFilters}
+      handleClick={handleClick}
+      options={options}
+      setOptions={setOptions}
+      isFiltersActive={isFiltersActive}
+      isSuggestionsActive={isSuggestionsActive}
+      suggestions={suggestions}
+      error={error}
+    />
   );
 };
 

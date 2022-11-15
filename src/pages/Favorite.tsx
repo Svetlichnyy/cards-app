@@ -2,7 +2,7 @@ import CardSummary from "../components/cardSummary/CardSummary";
 import Loader from "../components/layout/loader/Loader";
 import { useAppSelector } from "../hooks/redux";
 import { Person } from "../models/Person";
-import { personAPI } from "../services/persService";
+import { personAPI } from "../services/personService";
 
 const Favorite = () => {
   const favorites = useAppSelector(

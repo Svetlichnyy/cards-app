@@ -8,14 +8,34 @@
   --accent: #212121;
   --text: #76ff03;
 }
+
 .App {
   color: var(--text);
   min-height: 100vh;
   height: 100%;
   width: 100%;
   background-color: var(--main);
+  .card {
+    background-color: var(--accent);
+    font-size: 1.2rem;
+    font-weight: 500;
+    .card-title {
+      font-weight: 600;
+    }
+    .card-image {
+      img {
+        border-radius: 20px;
+      }
+    }
+  }
+  .filters {
+    color: #212121;
+    .select:focus {
+      border-color: var(--accent);
+    }
+  }
   .loading {
-    margin-top: 50px;
+    margin-top: 70%;
   }
   .authorization {
     button {
@@ -51,11 +71,19 @@
   }
   .history {
     .collection {
+      overflow: scroll;
+      max-height: 800px;
       .collection-item {
         background-color: var(--accent);
         color: var(--text);
       }
+      .collection-item:hover {
+        background-color: var(--main);
+      }
     }
+  }
+  ::-webkit-scrollbar {
+    display: none;
   }
   .card-details {
     button {
@@ -64,6 +92,7 @@
     }
   }
   .input-field {
+    color: #dbdbdb;
     background-color: var(--accent);
     button {
       background-color: var(--text);
@@ -100,7 +129,11 @@
     }
     .card-footer {
       position: absolute;
-      bottom: 70px;
+      bottom: 50px;
+      display: block;
+      margin: 0 auto;
+      padding-left: 20px;
+      font-weight: 300;
     }
   }
 }

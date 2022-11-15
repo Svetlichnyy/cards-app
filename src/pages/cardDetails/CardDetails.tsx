@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 
-import { personAPI } from "../../services/persService";
+import { personAPI } from "../../services/personService";
 
 import "./CardDetails.scss";
 
@@ -33,8 +33,9 @@ const Details = () => {
             <div className="card-action">
               <p>
                 Location : {person.location.name} <br />
-                Home place : {person.location.name} <br />
-                Gender : {person.gender}
+                Origin : {person.origin.name} <br />
+                Gender : {person.gender} <br />
+                Species : {person.species}
               </p>
             </div>
           </div>
